@@ -37,6 +37,9 @@ import coil3.request.ImageRequest
 import coil3.request.crossfade
 import kotlinx.serialization.Serializable
 import mx.cristobal.aichatcourseapp.core.onboarding.OnboardingIntroScreen
+import mx.cristobal.aichatcourseapp.core.onboarding.OnboardingRoot
+import mx.cristobal.aichatcourseapp.core.root.AppRoot
+import mx.cristobal.aichatcourseapp.core.welcome.WelcomeScreen
 import mx.cristobal.aichatcourseapp.ui.theme.AIChatCourseAppTheme
 import mx.cristobal.aichatcourseapp.utils.Constants
 
@@ -46,7 +49,7 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             AIChatCourseAppTheme {
-                OnboardingIntroScreen()
+                AppRoot()
             }
         }
     }
@@ -172,6 +175,7 @@ fun HomeScreen() {
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Text(text = "Welcome to Home Screen")
+
     }
 }
 
@@ -218,6 +222,7 @@ fun ProfileScreen() {
 @Composable
 fun GreetingPreview() {
     AIChatCourseAppTheme {
-        MainView()
+//        MainView()
+        AppRoot()
     }
 }
