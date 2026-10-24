@@ -3,11 +3,13 @@ package mx.cristobal.aichatcourseapp.core.onboarding
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.navigation3.runtime.NavKey
 import androidx.navigation3.runtime.entryProvider
 import androidx.navigation3.runtime.rememberNavBackStack
 import androidx.navigation3.ui.NavDisplay
 import kotlinx.serialization.Serializable
+import mx.cristobal.aichatcourseapp.utils.ColorSerializer
 
 @Serializable
 sealed interface OnboardingRoute: NavKey {
@@ -19,7 +21,9 @@ sealed interface OnboardingRoute: NavKey {
     data object OnboardingColor : OnboardingRoute, NavKey
 
     @Serializable
-    data object OnboardingCompleted : OnboardingRoute, NavKey
+    data class OnboardingCompleted(
+        @Serializable(with = ColorSerializer::class) val color: Color
+    ): OnboardingRoute, NavKey
 
 }
 
@@ -41,11 +45,15 @@ fun OnboardingRoot(
             }
             entry<OnboardingRoute.OnboardingColor> {
                 OnboardingColorScreen(
-                    onContinue = { backStack.add(OnboardingRoute.OnboardingCompleted) }
+                    onContinue = {
+                        backStack.add(OnboardingRoute.OnboardingCompleted(it))
+                    }
                 )
             }
-            entry<OnboardingRoute.OnboardingCompleted> {
-                OnboardingCompletedScreen()
+            entry<OnboardingRoute.OnboardingCompleted> { key ->
+                OnboardingCompletedScreen(
+                    selectedColor = key.color
+                )
             }
         }
     )
