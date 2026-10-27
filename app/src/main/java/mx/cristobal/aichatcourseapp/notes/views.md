@@ -39,5 +39,16 @@ animacion para visdualizar algo
     PrimaryButton(
 ```
 
+Pintar un grid de items con algunas props
+```kotlin
+LazyVerticalGrid(
+    columns = Fixed(3),
+    modifier = Modifier
+    .weight(1f),
+    contentPadding = PaddingValues(8.dp),
+    verticalArrangement = Arrangement.spacedBy(8.dp),
+    horizontalArrangement = Arrangement.spacedBy(8.dp)
+```
+
 NOTA
-checar codigo de approot para ver como se usa aprox el navigation
+checar codigo de **approot** para ver como se usa aprox el navigation

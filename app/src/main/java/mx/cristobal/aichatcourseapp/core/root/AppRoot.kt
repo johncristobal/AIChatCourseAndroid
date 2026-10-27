@@ -8,11 +8,8 @@ import androidx.navigation3.runtime.entryProvider
 import androidx.navigation3.runtime.rememberNavBackStack
 import androidx.navigation3.ui.NavDisplay
 import kotlinx.serialization.Serializable
-import mx.cristobal.aichatcourseapp.MainView
-import mx.cristobal.aichatcourseapp.core.onboarding.OnboardingColorScreen
-import mx.cristobal.aichatcourseapp.core.onboarding.OnboardingCompletedScreen
-import mx.cristobal.aichatcourseapp.core.onboarding.OnboardingIntroScreen
 import mx.cristobal.aichatcourseapp.core.onboarding.OnboardingRoot
+import mx.cristobal.aichatcourseapp.core.tabbar.MainView
 import mx.cristobal.aichatcourseapp.core.welcome.WelcomeScreen
 
 
