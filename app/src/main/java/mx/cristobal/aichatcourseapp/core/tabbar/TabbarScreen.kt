@@ -1,19 +1,30 @@
 package mx.cristobal.aichatcourseapp.core.tabbar
 
+import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.ui.unit.dp
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.automirrored.filled.Chat
 import androidx.compose.material.icons.filled.Explore
+import androidx.compose.material.icons.filled.MoreVert
 import androidx.compose.material.icons.filled.Person
+import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.BottomAppBar
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
+import androidx.compose.material3.LargeTopAppBar
 import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
+import androidx.compose.material3.TopAppBarDefaults
+import androidx.compose.material3.TopAppBarScrollBehavior
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.navigation3.runtime.NavKey
 import androidx.navigation3.runtime.entryProvider
 import androidx.navigation3.runtime.rememberNavBackStack
@@ -56,10 +67,12 @@ val TOP_LEVEL = mapOf(
     )
 )
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MainView() {
     val backStack = rememberNavBackStack(Route.Explore as Route)
     val currentRoute = backStack.lastOrNull() ?: Route.Explore
+    val canNavigateBack = backStack.size > 1
 
     // Determine selected bottom bar item (if we are on ChatDetail, Chat tab should be selected)
     val selectedTab = when (currentRoute) {
@@ -67,8 +80,20 @@ fun MainView() {
         else -> currentRoute
     }
 
+    val scrollBehavior = TopAppBarDefaults.exitUntilCollapsedScrollBehavior()
+
     Scaffold(
-        modifier = Modifier.fillMaxSize(),
+        modifier = Modifier
+            .nestedScroll(scrollBehavior.nestedScrollConnection)
+            .fillMaxSize(),
+        topBar = {
+            MainTopAppBar(
+                currentRoute = currentRoute as Route,
+                canNavigateBack = canNavigateBack,
+                onNavigateBack = { backStack.removeLastOrNull() },
+                scrollBehavior = scrollBehavior
+            )
+        },
         bottomBar = {
             BottomBar(
                 selectedKey = selectedTab,
@@ -134,4 +159,52 @@ fun BottomBar(
             )
         }
     }
+}
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun MainTopAppBar(
+    currentRoute: Route,
+    canNavigateBack: Boolean,
+    onNavigateBack: () -> Unit,
+    scrollBehavior: TopAppBarScrollBehavior
+) {
+
+    val title = when (currentRoute) {
+        is Route.Explore -> "Explore"
+        is Route.Chats -> "Chats"
+        is Route.ChatDetail -> "Chat"
+        is Route.Profile -> "Profile"
+    }
+
+    LargeTopAppBar(
+        title = { Text(text = title) },
+        scrollBehavior = scrollBehavior,
+        expandedHeight = 100.dp,
+        windowInsets = WindowInsets(top = 8.dp),
+        navigationIcon = {
+            if (canNavigateBack) {
+                IconButton(onClick = onNavigateBack) {
+                    Icon(
+                        imageVector = Icons.AutoMirrored.Filled.ArrowBack,
+                        contentDescription = "Navigate back"
+                    )
+                }
+            }
+        },
+        actions = {
+            IconButton(onClick = { /* Action */ }) {
+                Icon(
+                    imageVector = Icons.Default.Search,
+                    contentDescription = "Search"
+                )
+            }
+            IconButton(onClick = { /* Action */ }) {
+                Icon(
+                    imageVector = Icons.Default.MoreVert,
+                    contentDescription = "More options"
+                )
+            }
+        }
+    )
 }
