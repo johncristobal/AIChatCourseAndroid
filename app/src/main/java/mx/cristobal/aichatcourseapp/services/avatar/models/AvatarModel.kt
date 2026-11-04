@@ -1,7 +1,10 @@
 package mx.cristobal.aichatcourseapp.services.avatar.models
 
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
 import java.util.Date
 
+@Parcelize
 data class AvatarModel(
     val avatarId: String,
     val name: String?,
@@ -12,7 +15,7 @@ data class AvatarModel(
     val authorIdval : String?,
     val dateCreatedval : Date?,
     val clickCountval : Int?
-) {
+) : Parcelable {
     companion object {
 
         val mocks = listOf(
