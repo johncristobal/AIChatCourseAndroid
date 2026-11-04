@@ -33,11 +33,13 @@ import androidx.navigation3.runtime.entryProvider
 import androidx.navigation3.runtime.rememberNavBackStack
 import androidx.navigation3.ui.NavDisplay
 import kotlinx.serialization.Serializable
+import dagger.hilt.android.AndroidEntryPoint
 import mx.cristobal.aichatcourseapp.core.root.AppRoot
 import mx.cristobal.aichatcourseapp.core.tabbar.MainView
 import mx.cristobal.aichatcourseapp.utils.showTabbarView
 import mx.cristobal.aichatcourseapp.ui.theme.AIChatCourseAppTheme
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
