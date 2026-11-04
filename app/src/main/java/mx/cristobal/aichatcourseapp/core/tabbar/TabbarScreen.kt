@@ -181,7 +181,7 @@ fun MainTopAppBar(
         title = { Text(text = title) },
         scrollBehavior = scrollBehavior,
         expandedHeight = 100.dp,
-        windowInsets = WindowInsets(top = 8.dp),
+        windowInsets = WindowInsets(top = 20.dp),
         navigationIcon = {
             if (canNavigateBack) {
                 IconButton(onClick = onNavigateBack) {

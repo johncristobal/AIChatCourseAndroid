@@ -30,6 +30,7 @@ import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -51,14 +52,25 @@ import mx.cristobal.aichatcourseapp.utils.Constants
 fun ExploreScreen(
     modifier: Modifier = Modifier
 ) {
-    val density = LocalDensity.current
-    val windowInfo = LocalWindowInfo.current
     val gradientBrush = Brush.verticalGradient(
         colors = listOf(Color.Transparent, Color.Black.copy(alpha = 0.3f), Color.Black.copy(alpha = 0.4f))
     )
     val scrollState = rememberScrollState()
     // Brush.horizontalGradient - gradiente horizontal de izq a der
     // Brush.linearGradient - gradiente lineal de esquina a esquina
+
+    val featuerdItems = rememberSaveable { AvatarModel.mocks }
+    var selection: AvatarModel? by rememberSaveable { mutableStateOf(null) }
+    val pagerFeaturedState = rememberPagerState(
+        pageCount = { featuerdItems.count() }
+    )
+
+    val popularItems = rememberSaveable { AvatarModel.mocks }
+
+    var categories = rememberSaveable { CharacterOption.entries }
+    val pagerCategoryState = rememberPagerState(
+        pageCount = { categories.count() }
+    )
 
     Column(
         modifier = Modifier
@@ -67,19 +79,6 @@ fun ExploreScreen(
             .verticalScroll(scrollState)
             .padding(16.dp)
     ) {
-        val featuerdItems = remember { AvatarModel.mocks }
-        var selection: AvatarModel? by remember { mutableStateOf(null) }
-        val pagerFeaturedState = rememberPagerState(
-            pageCount = { featuerdItems.count() }
-        )
-
-        val popularItems = remember { AvatarModel.mocks }
-
-        var categories = remember { CharacterOption.entries }
-        val pagerCategoryState = rememberPagerState(
-            pageCount = { categories.count() }
-        )
-
         Text(
             text = "Featured avatars"
         )
