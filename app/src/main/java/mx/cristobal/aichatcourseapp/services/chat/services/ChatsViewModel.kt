@@ -1,4 +1,4 @@
-package mx.cristobal.aichatcourseapp.services.chat.viewmodel
+package mx.cristobal.aichatcourseapp.services.chat.services
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope

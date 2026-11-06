@@ -42,6 +42,7 @@ import androidx.compose.ui.platform.LocalWindowInfo
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import mx.cristobal.aichatcourseapp.components.ImageLoaderView
+import mx.cristobal.aichatcourseapp.components.views.CustomListCellView
 import mx.cristobal.aichatcourseapp.services.avatar.models.AvatarModel
 import mx.cristobal.aichatcourseapp.services.avatar.models.CharacterOption
 import mx.cristobal.aichatcourseapp.ui.theme.AIChatCourseAppTheme
@@ -203,33 +204,11 @@ fun ExploreScreen(
             ) {
                 repeat(popularItems.size) {
                 val item = popularItems[it]
-                    Row(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .background(MaterialTheme.colorScheme.background)
-                            .padding(8.dp)
-                    ) {
-                        ImageLoaderView(
-                            modifier = Modifier
-                                .size(60.dp)
-                                .clip(RoundedCornerShape(16.dp)),
-                            urlString = item.profileImageName ?: Constants.randomImageURL
-                        )
-                        Column(
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .padding(8.dp)
-                        ) {
-                            Text(
-                                text = item.name ?: "",
-                                style = MaterialTheme.typography.titleMedium,
-                            )
-                            Text(
-                                text = item.description(),
-                                style = MaterialTheme.typography.bodyMedium,
-                            )
-                        }
-                    }
+                    CustomListCellView(
+                        profileImageName = item.profileImageName,
+                        title = item.name,
+                        subtitle = item.description()
+                    )
                 }
             }
         }

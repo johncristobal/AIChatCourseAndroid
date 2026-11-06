@@ -30,7 +30,7 @@ fun ImageLoaderView(
             .crossfade(true)
             .build(),
         contentDescription = "demo image",
-        contentScale = ContentScale.FillBounds,
+        contentScale = ContentScale.Crop,
         modifier = modifier
     )
 }

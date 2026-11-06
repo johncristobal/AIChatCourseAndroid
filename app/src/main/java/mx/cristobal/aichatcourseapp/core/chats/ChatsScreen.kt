@@ -11,7 +11,6 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.foundation.shape.CornerSize
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Card
@@ -22,16 +21,14 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.platform.LocalInspectionMode
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import mx.cristobal.aichatcourseapp.R
 import mx.cristobal.aichatcourseapp.components.ImageLoaderView
 import mx.cristobal.aichatcourseapp.services.avatar.services.remote.AvatarViewModel
 import mx.cristobal.aichatcourseapp.services.chat.models.ChatModel
-import mx.cristobal.aichatcourseapp.services.chat.viewmodel.ChatsViewModel
+import mx.cristobal.aichatcourseapp.services.chat.services.ChatsViewModel
 import mx.cristobal.aichatcourseapp.ui.theme.AIChatCourseAppTheme
 import mx.cristobal.aichatcourseapp.utils.Constants
 
@@ -69,7 +66,7 @@ fun ChatListScreen(
                     ImageLoaderView(
                         modifier = Modifier
                             .size(60.dp)
-                            .clip(RoundedCornerShape(16.dp)),
+                            .clip(CircleShape),
                         urlString = chat.profileImageName ?: Constants.randomImageURL
                     )
 
