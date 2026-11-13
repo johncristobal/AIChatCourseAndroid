@@ -44,7 +44,9 @@ fun AppRoot(
                 )
             }
             entry<AppRoute.Onboarding> {
-                OnboardingRoot()
+                OnboardingRoot(
+                    onFinish = { backStack.add(AppRoute.Home) }
+                )
             }
             entry<AppRoute.Home> {
                 MainView()

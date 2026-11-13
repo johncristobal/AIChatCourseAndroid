@@ -29,7 +29,8 @@ sealed interface OnboardingRoute: NavKey {
 
 @Composable
 fun OnboardingRoot(
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    onFinish: () -> Unit = {}
 ) {
     val backStack = rememberNavBackStack(OnboardingRoute.OnboardingIntro)
 
@@ -52,7 +53,8 @@ fun OnboardingRoot(
             }
             entry<OnboardingRoute.OnboardingCompleted> { key ->
                 OnboardingCompletedScreen(
-                    selectedColor = key.color
+                    selectedColor = key.color,
+                    onFinish = onFinish
                 )
             }
         }

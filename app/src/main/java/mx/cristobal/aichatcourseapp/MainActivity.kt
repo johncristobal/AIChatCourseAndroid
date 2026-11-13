@@ -46,8 +46,8 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             AIChatCourseAppTheme {
-//                AppRoot()
-                MainView()
+                AppRoot()
+//                MainView()
             }
         }
     }
