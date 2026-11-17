@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "744790357438",
+    "project_id": "aichatcourse-2643b",
+    "storage_bucket": "aichatcourse-2643b.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:744790357438:android:3bb38729356adf2ec635ef",
+        "android_client_info": {
+          "package_name": "mx.cristobal.aichatcourseapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "744790357438-jm2mo27a7dc71p0tulgg2ogimq1gi2e9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBen9xElTovMWkGBmanj-CQRyq9MwFCFy8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "744790357438-jm2mo27a7dc71p0tulgg2ogimq1gi2e9.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "744790357438-47mm4ouo03nndikhlsospl36ehr5ltfj.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "mx.cristobal.AIChatCourse"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
